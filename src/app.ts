@@ -47,6 +47,7 @@ class App {
     })
 
     this.input.value = ""
+
     this.render()
   }
 
@@ -59,16 +60,18 @@ class App {
 
     if (!task) return
 
-    switch (task.status) {
-      case "todo":
-        task.status = "doing"
-        break
-      case "doing":
-        task.status = "done"
-        break
-      case "done":
-        this.tasks = this.tasks.filter((task) => task.id !== taskId)
-        break
+    //現在のstatusが、配列statusesの何番目に当たるのかを探す
+    const currentIndex = statuses.findIndex((status) => status === task.status)
+
+    const nextIndex = currentIndex + 1
+
+    //次のstatusが存在するか（配列の範囲内か）をチェック
+    if (nextIndex < statuses.length) {
+      //次のstatusを代入
+      task.status = statuses[nextIndex]
+    } else {
+      //最後のstatusの場合、タスクを削除する
+      this.tasks = this.tasks.filter((task) => task.id !== taskId)
     }
 
     this.render()
