@@ -28,13 +28,13 @@ class App {
     ) as HTMLTemplateElement
 
     //イベントリスナーの設定
-    this.form.addEventListener("submit", this.addTask.bind(this))
-    this.appContainer.addEventListener("click", this.handleClick.bind(this))
+    this.form.addEventListener("submit", this.addTask)
+    this.appContainer.addEventListener("click", this.handleClick)
 
     this.render()
   }
 
-  private addTask(e: Event) {
+  private addTask = (e: Event) => {
     e.preventDefault()
 
     const content = this.input.value.trim()
@@ -51,7 +51,7 @@ class App {
     this.render()
   }
 
-  private handleClick(e: Event) {
+  private handleClick = (e: Event) => {
     const target = e.target as HTMLElement
     if (target.tagName !== "LI") return
 
@@ -77,7 +77,7 @@ class App {
     this.render()
   }
 
-  private render() {
+  private render = () => {
     //コンテナをクリア
     this.appContainer.innerHTML = ""
 
