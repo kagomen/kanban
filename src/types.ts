@@ -1,4 +1,4 @@
-import { STATUS_MAP } from "./constants"
+import { STATUS_MAP } from "./constants.js"
 
 export interface Task {
   id: string
