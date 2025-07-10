@@ -1,18 +1,5 @@
-const STATUS_MAP = {
-  todo: { label: "Todo" },
-  doing: { label: "Doing" },
-  done: { label: "Done" },
-} as const
-
-type Status = keyof typeof STATUS_MAP
-
-const statuses = Object.keys(STATUS_MAP) as Status[]
-
-interface Task {
-  id: number
-  content: string
-  status: Status
-}
+import { STATUS_MAP, statuses } from "./constants"
+import { Task } from "./types"
 
 class App {
   private tasks: Task[] = []
