@@ -1,6 +1,5 @@
-import { ulid } from "../node_modules/ulid/dist/ulid"
-import { STATUS_MAP, statuses } from "./constants"
-import { Task } from "./types"
+import { STATUS_MAP, statuses } from "./constants.js"
+import { Task } from "./types.js"
 
 class App {
   private tasks: Task[] = []
@@ -42,7 +41,7 @@ class App {
     if (!content) return
 
     this.tasks.push({
-      id: ulid(),
+      id: crypto.randomUUID(),
       content,
       status: statuses[0],
     })
