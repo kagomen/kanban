@@ -1,7 +1,7 @@
 import { STATUS_MAP } from "./constants"
 
 export interface Task {
-  id: number
+  id: string
   content: string
   status: Status
 }

@@ -1,9 +1,9 @@
+import { ulid } from "../node_modules/ulid/dist/ulid"
 import { STATUS_MAP, statuses } from "./constants"
 import { Task } from "./types"
 
 class App {
   private tasks: Task[] = []
-  private nextId: number = 1
 
   //DOM要素
   private appContainer: HTMLDivElement
@@ -42,9 +42,9 @@ class App {
     if (!content) return
 
     this.tasks.push({
-      id: this.nextId++,
+      id: ulid(),
       content,
-      status: "todo",
+      status: statuses[0],
     })
 
     this.input.value = ""
@@ -55,7 +55,7 @@ class App {
     const target = e.target as HTMLElement
     if (target.tagName !== "LI") return
 
-    const taskId = parseInt(target.dataset.id!)
+    const taskId = target.dataset.id
     const task = this.tasks.find((task) => task.id === taskId)
 
     if (!task) return
